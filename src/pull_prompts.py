@@ -19,7 +19,7 @@ from utils import save_yaml, check_env_vars, print_section_header
 from datetime import datetime
 load_dotenv()
 
-REMOTE_PROMPT_PATH = "lucasdevitto/bug_to_user_story_mba_v1"
+REMOTE_PROMPT_PATH = "leonanluppi/bug_to_user_story_v1"
 LOCAL_PROMPT_PATH = "prompts/bug_to_user_story_mba_v1.yml"
 DATE_FORMAT = datetime.now().strftime("%Y-%m-%d")
 
