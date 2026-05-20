@@ -50,7 +50,7 @@ def pull_prompts_from_langsmith():
     remote_prompt = hub.pull(REMOTE_PROMPT_PATH)
     
     if remote_prompt is None:
-        print("Não foi possível carregar o prompt remoto.")
+        print("The remote prompt could not be loaded.")
         return False
 
     system_prompt, user_prompt = extract_content(remote_prompt)
