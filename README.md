@@ -65,7 +65,7 @@ Ações:
 Ações:
    - Lê os prompts otimizados de `prompts/bug_to_user_story_v2.yml`
    - Faz push para o LangSmith com nomes versionados:
-   - Commita em https://smith.langchain.com/prompts/bug_to_user_story_mba_v2
+   - Commita em https://smith.langchain.com/hub/lucasdevitto/bug_to_user_story_mba_v2
    - Para fazer mais que um commit é necessário alterar o conteudo do arquivo. Altere e verifique no dashboard online o historico de commits
 ---
 
@@ -92,29 +92,26 @@ pytest tests/test_prompts.py
 
 ## Estrutura do projeto
 
-`
-mba-ia-pull-evaluation-prompt/
-├── .env.example              # Template das variáveis de ambiente
-├── requirements.txt          # Dependências Python
-├── README.md                 # Sua documentação do processo
-│
-├── prompts/
-│   ├── bug_to_user_story_v1.yml  # Prompt inicial (já incluso)
-│   └── bug_to_user_story_v2.yml  # Seu prompt otimizado (criar)
-│
+```text
+.
 ├── datasets/
-│   └── bug_to_user_story.jsonl   # 15 exemplos de bugs (já incluso)
-│
+│   └── bug_to_user_story.jsonl
+├── evidence/
+│   └── checklist/
+│       └── final_delivery_evidence_2026-03-06.md
+├── prompts/
+│   ├── bug_to_user_story_v1.yml
+│   └── bug_to_user_story_v2.yml
 ├── src/
-│   ├── pull_prompts.py       # Pull do LangSmith (implementar)
-│   ├── push_prompts.py       # Push ao LangSmith (implementar)
-│   ├── evaluate.py           # Avaliação automática (pronto)
-│   ├── metrics.py            # 5 métricas implementadas (pronto)
-│   └── utils.py              # Funções auxiliares (pronto)
-│
+│   ├── evaluate.py
+│   ├── metrics.py
+│   ├── pull_prompts.py
+│   ├── push_prompts.py
+│   └── utils.py
 ├── tests/
-│   └── test_prompts.py       # Testes de validação (implementar)
-│
+│   └── test_prompts.py
+├── requirements.txt
+└── README.md
 ```
 
 
