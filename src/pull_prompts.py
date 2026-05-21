@@ -20,7 +20,7 @@ from datetime import datetime
 load_dotenv()
 
 REMOTE_PROMPT_PATH = "leonanluppi/bug_to_user_story_v1"
-LOCAL_PROMPT_PATH = "prompts/bug_to_user_story_mba_v1.yml"
+LOCAL_PROMPT_PATH = "prompts/bug_to_user_story_v1.yml"
 DATE_FORMAT = datetime.now().strftime("%Y-%m-%d")
 
 def extract_content(remote_prompt):

@@ -125,6 +125,6 @@ bug_to_user_story_mba_v2:
   tags:
   - bug-analysis
   - user-story
-  techniques:
+  techniques_applied:
   - chain-of-thought
   - few-shot-learning

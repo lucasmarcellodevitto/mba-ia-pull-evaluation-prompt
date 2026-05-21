@@ -15,45 +15,12 @@ import sys
 from dotenv import load_dotenv
 from langchain import hub
 from langchain.prompts import PromptTemplate
-from utils import load_yaml, check_env_vars, print_section_header
+from utils import load_yaml, check_env_vars, print_section_header, validate_prompt_structure
 
 load_dotenv()
 
-LOCAL_PROMPT_PATH_V2 = "prompts/bug_to_user_story_mba_v2.yml"
+LOCAL_PROMPT_PATH_V2 = "prompts/bug_to_user_story_v2.yml"
 PROMPT_KEY = "bug_to_user_story_mba_v2"
-
-def validate_prompt(prompt_data: dict) -> tuple[bool, list]:
-    """
-    Valida estrutura básica de um prompt (versão simplificada).
-
-    Args:
-        prompt_data: Dados do prompt
-
-    Returns:
-        (is_valid, errors) - Tupla com status e lista de erros
-    """
-    
-    errors = []
-
-    required_fields = ['system_prompt', 'user_prompt', 'version', 'description', 'techniques', 'tags']
-
-    for field in required_fields:
-        if not prompt_data.get(field):
-            errors.append(f"Required field missing: ")
-    
-    if not prompt_data.get('system_prompt').strip():
-        errors.append(f"The attribute cannot be empty: system_prompt")
-
-    if not prompt_data.get('user_prompt').strip():
-        errors.append(f"The attribute cannot be empty: user_prompt")
-
-    if not prompt_data.get('version').strip():
-        errors.append(f"The attribute cannot be empty: version")
-
-    if not prompt_data.get('description').strip():
-        errors.append(f"The attribute cannot be empty: description")
-
-    return (len(errors) == 0, errors)
 
 
 def push_prompt_to_langsmith():
@@ -80,7 +47,7 @@ def push_prompt_to_langsmith():
 
     prompt_data = yaml_data.get(PROMPT_KEY)
 
-    is_valid, errors = validate_prompt(prompt_data)
+    is_valid, errors = validate_prompt_structure(prompt_data)
     
     if not is_valid:
         print("Prompt inválido:")
@@ -101,7 +68,7 @@ def push_prompt_to_langsmith():
     for tag in tags:
         tags_list.append(tag)
 
-    techniques = prompt_data.get("techniques", [])
+    techniques = prompt_data.get("techniques_applied", [])
     
     techniques_list = []
     
