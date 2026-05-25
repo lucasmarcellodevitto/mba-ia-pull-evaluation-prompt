@@ -33,7 +33,7 @@ class TestPrompts:
 
     def test_prompt_has_role_definition(self):
         assert "você é" in self.system_prompt.lower()
-        assert re.search(r"Product Owner|Business Analyst", self.system_prompt, re.IGNORECASE)
+        assert re.search(r"Analista de Sistemas | sênior", self.system_prompt, re.IGNORECASE)
 
 
     def test_prompt_mentions_format(self):
