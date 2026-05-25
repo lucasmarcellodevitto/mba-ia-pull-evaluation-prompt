@@ -12,7 +12,7 @@ from utils import validate_prompt_structure
 
 PROMPT_FILE = str(Path(__file__).parent.parent / "prompts" / "bug_to_user_story_v2.yml")
 
-PROMPT_KEY = "bug_to_user_story_mba_v2"
+PROMPT_KEY = "bug_to_user_story_v2"
 
 def load_prompts(file_path: str):
     with open(file_path, 'r', encoding='utf-8') as f:

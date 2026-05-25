@@ -20,7 +20,7 @@ from utils import load_yaml, check_env_vars, print_section_header, validate_prom
 load_dotenv()
 
 LOCAL_PROMPT_PATH_V2 = "prompts/bug_to_user_story_v2.yml"
-PROMPT_KEY = "bug_to_user_story_mba_v2"
+PROMPT_KEY = "bug_to_user_story_v2"
 
 
 def push_prompt_to_langsmith():

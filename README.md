@@ -65,7 +65,7 @@ Ações:
 Ações:
    - Lê os prompts otimizados de `prompts/bug_to_user_story_v2.yml`
    - Faz push para o LangSmith com nomes versionados:
-   - Commita em https://smith.langchain.com/hub/lucasdevitto/bug_to_user_story_mba_v2
+   - Commita em https://smith.langchain.com/hub/lucasdevitto/bug_to_user_story_v2
    - Para fazer mais que um commit é necessário alterar o conteudo do arquivo. Altere e verifique no dashboard online o historico de commits
 ---
 
