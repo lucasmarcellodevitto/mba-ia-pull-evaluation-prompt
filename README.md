@@ -114,28 +114,157 @@ pytest tests/test_prompts.py
 └── README.md
 ```
 
+# Seção "Técnicas Aplicadas (Fase 2)
 
----
+### Role Prompting
+   Objetivo
+      Define:
+       - identidade;
+       - nível de expertise;
+       - domínio técnico;
+       - comportamento esperado.
 
-2. **README.md deve conter:**
+       Isso força o modelo a:
+        - responder como especialista;
+        - usar terminologia adequada;
+        - priorizar profundidade técnica;
+        - evitar respostas genéricas.
+Exemplo: ```Você é um Analista de Sistemas sênior especializado em transformar bug reports em User Stories completas e profissionais.```
 
-   A) **Seção "Técnicas Aplicadas (Fase 2)"**:
+### TASK PRIMING
+   Objetivo
+      Reduz ambiguidade operacional.
+      O modelo entende:
+       - entrada;
+       - transformação esperada;
+       - padrão de saída;
+       - metodologia (BDD).
+Exemplo: ```Sua tarefa é converter o bug report em uma User Story estruturada com Critérios de Aceitação no padrão ágil BDD```
 
-   - Quais técnicas avançadas você escolheu para refatorar os prompts
-   - Justificativa de por que escolheu cada técnica
-   - Exemplos práticos de como aplicou cada técnica
+### Skeleton of Thought
+ Objetivo
+   Estruturar a resposta em etapas claras
+Exemplo: 
+   ```
+   BUGS COMPLEXOS OU CRÍTICOS:
+   Estruturar usando blocos como:
+      - === USER STORY PRINCIPAL ===
+      - === CRITÉRIOS DE ACEITAÇÃO ===
+      - === CRITÉRIOS TÉCNICOS ===
+      - === CONTEXTO DO BUG ===
+      - === TASKS TÉCNICAS SUGERIDAS ===
+      - === MÉTRICAS DE SUCESSO ===
+```
 
-   B) **Seção "Resultados Finais"**:
 
-   - Link público do seu dashboard do LangSmith mostrando as avaliações
-   - Screenshots das avaliações com as notas mínimas de 0.9 atingidas
-   - Tabela comparativa: prompts ruins (v1) vs prompts otimizados (v2)
+# Seção "Resultados Finais"
 
-3. **Evidências no LangSmith**:
-   - Link público (ou screenshots) do dashboard do LangSmith
-   - Devem estar visíveis:
-     - Dataset de avaliação com 15 exemplos
-     - Execuções dos prompts v2 (otimizados) com notas ≥ 0.9
-     - Tracing detalhado de pelo menos 3 exemplos
+![Screenshots das avaliações](./img/img_1.png)
 
----
+Comparação
+
+Prompt bug_to_user_story_v1.yml
+```
+   Avaliando exemplos...
+      [1/15] F1:1.00 Clarity:1.00 Precision:0.97
+      [2/15] F1:0.89 Clarity:0.95 Precision:0.80
+      [3/15] F1:1.00 Clarity:0.55 Precision:1.00
+      [4/15] F1:0.75 Clarity:0.95 Precision:0.87
+      [5/15] F1:0.25 Clarity:0.93 Precision:0.90
+      [6/15] F1:0.95 Clarity:0.98 Precision:0.97
+      [7/15] F1:0.40 Clarity:0.88 Precision:0.93
+      [8/15] F1:0.26 Clarity:0.82 Precision:0.83
+      [9/15] F1:1.00 Clarity:1.00 Precision:0.97
+      [10/15] F1:0.40 Clarity:0.60 Precision:0.83
+      [11/15] F1:0.67 Clarity:0.98 Precision:0.90
+      [12/15] F1:0.95 Clarity:1.00 Precision:0.95
+      [13/15] F1:1.00 Clarity:1.00 Precision:1.00
+      [14/15] F1:0.97 Clarity:1.00 Precision:1.00
+      [15/15] F1:0.79 Clarity:1.00 Precision:1.00
+
+==================================================
+Prompt: lucasdevitto/bug_to_user_story_v2
+==================================================
+
+Métricas Derivadas:
+  - Helpfulness: 0.92 ✓
+  - Correctness: 0.84 ✗
+
+Métricas Base:
+  - F1-Score: 0.75 ✗
+  - Clarity: 0.91 ✓
+  - Precision: 0.93 ✓
+
+--------------------------------------------------
+📊 MÉDIA GERAL: 0.8694
+--------------------------------------------------
+
+❌ STATUS: REPROVADO
+⚠️  Métricas abaixo de 0.9: correctness, f1_score
+⚠️  Média atual: 0.8694 | Necessário: 0.9000
+```
+
+Prompt bug_to_user_story_v2.yml
+
+```
+   Avaliando exemplos...
+      [1/15] F1:0.86 Clarity:0.86 Precision:1.00
+      [2/15] F1:0.91 Clarity:0.90 Precision:0.97
+      [3/15] F1:0.97 Clarity:0.95 Precision:1.00
+      [4/15] F1:0.70 Clarity:0.90 Precision:0.97
+      [5/15] F1:1.00 Clarity:0.93 Precision:0.90
+      [6/15] F1:1.00 Clarity:0.93 Precision:1.00
+      [7/15] F1:0.97 Clarity:0.98 Precision:0.97
+      [8/15] F1:0.95 Clarity:0.90 Precision:0.97
+      [9/15] F1:1.00 Clarity:0.93 Precision:0.97
+      [10/15] F1:0.87 Clarity:0.95 Precision:0.87
+      [11/15] F1:0.64 Clarity:0.82 Precision:1.00
+      [12/15] F1:1.00 Clarity:0.95 Precision:0.90
+      [13/15] F1:0.97 Clarity:0.90 Precision:0.97
+      [14/15] F1:0.86 Clarity:0.95 Precision:1.00
+      [15/15] F1:1.00 Clarity:0.97 Precision:1.00
+
+==================================================
+Prompt: lucasdevitto/bug_to_user_story_v2
+==================================================
+
+Métricas Derivadas:
+  - Helpfulness: 0.94 ✓
+  - Correctness: 0.94 ✓
+
+Métricas Base:
+  - F1-Score: 0.91 ✓
+  - Clarity: 0.92 ✓
+  - Precision: 0.97 ✓
+
+--------------------------------------------------
+📊 MÉDIA GERAL: 0.9368
+--------------------------------------------------
+
+✅ STATUS: APROVADO - Todas as métricas >= 0.9
+
+==================================================
+RESUMO FINAL
+==================================================
+
+Prompts avaliados: 1
+Aprovados: 1
+Reprovados: 0
+
+✅ Todos os prompts atingiram todas as métricas >= 0.9!
+
+```
+
+# Evidências no LangSmith
+[Link Dashboard do LangSmith ](https://smith.langchain.com/public/7bacc913-c286-4df5-8a31-2065230c4e0e/d)
+
+
+
+![Dataset de avaliação com 15 exemplos](./img/img_2.png)
+![Tracing detalhado](./img/img_3.png)
+![Tracing detalhado](./img/img_4.png)
+![Tracing detalhado](./img/img_5.png)
+![Tracing](./img/img_6.png)
+![Métricas](./img/img_7.png)
+![Métricas](./img/img_8.png)
+![Métricas](./img/img_9.png)
